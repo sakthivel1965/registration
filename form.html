@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRATION FORM</title>
+    <style>
+        body {
+            font-family: "Gill Sans Extrabold", sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300hv;
+            background-image: url("scen.jpg"); 
+        }
+        .container {
+            background-color: rgb(26, 189, 135);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 400px;
+        }
+        .header{
+            background-color: rgb(127, 197, 255);
+            font-size: large;
+            color: black;
+        }
+        .form {
+            margin-bottom: 15px;
+        }
+        .name {
+        margin-bottom: 10px;
+        padding-bottom: 20px;
+       position: relative;
+      }
+
+        .name label {
+            display: block;
+            margin-bottom: 5px;
+            color: blue;
+        }
+       .name input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 2px solid wheat;
+            border-radius: 5px;
+            color: blueviolet;
+        }
+        .name span{
+   
+       
+         font-weight: bolder;
+         display: none;
+         color: #863ce7;
+        }
+        .name.error input {
+            color: rgb(243, 15, 15);
+            font-size: 20px;
+        }
+        #submit {
+            padding: 10px 15px;
+            background-color: rgba(7, 109, 134, 0);
+            color: rgb(71, 15, 175);
+            border: none;
+             cursor: pointer;
+             border: 1px solid black;
+             border-radius: 10%;
+
+             
+
+        }
+        #submit:hover{
+           background-color:rgb(37, 122, 192);
+            
+        }
+        #submit:disabled {
+            background-color: wheat;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>Registration Form</h1>
+        </div>
+        <form id="passwordForm" onsubmit="return validateForm(event)">
+            <div class="name">
+                <label for="Username">Username</label>
+                <input type="text" id="username">
+                <span id="error-username"> Please Enter valid username</span>
+            </div>
+            <div class="name">
+                <label for="Password">Password</label>
+                <input type="password" id="password">
+
+                <span id="error-password"> Password must be at least 8 characters long.</span>
+
+            </div>
+            <div class="name">
+                <label for="Re-Type">Re-Type Password</label>
+                <input type="password" id="retype-password">
+                <span id="error-retype-password"> Password doesnot match</span>
+            </div>
+            <button type="submit" id="submit">register</button>
+
+        </form>
+
+    </div>
+
+    <script>
+
+
+
+        function validateForm(event) {
+            event.preventDefault(); 
+
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const retypePassword = document.getElementById('retype-password').value;
+
+            
+            const errorUsername = document.getElementById('error-username');
+            const errorPassword = document.getElementById('error-password');
+            const errorRetypePassword = document.getElementById('error-retype-password');
+
+            
+            let isValid = true;
+
+            
+            if (username === "") {
+                errorUsername.style.display = "inline";
+                isValid = false;
+            } else {
+                errorUsername.style.display = "none";
+            }
+
+            // Validate password length
+            if (password.length < 8) {
+                errorPassword.style.display = "inline";
+                isValid = false;
+            } else {
+                errorPassword.style.display = "none";
+            }
+
+            
+            if (password !== retypePassword) {
+                errorRetypePassword.style.display = "inline";
+                isValid = false;
+            } 
+            else 
+            {
+               
+                errorRetypePassword.style.display = "none";
+                
+            }
+
+           
+            if (isValid) {
+                alert('Form submitted successfully!');
+                
+            }
+
+            return false; 
+        }
+
+
+
+
+    </script>
+
+</body>
+
+
+</html>
